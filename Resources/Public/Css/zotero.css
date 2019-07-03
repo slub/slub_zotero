@@ -1,0 +1,12 @@
+div.tx-slub-zotero div.abstract {
+        color: green;
+        display: none;
+    }
+
+div.tx-slub-zotero div.citation {
+        font-family: VistaSlabReg,Arial,Helvetica,Sans-Serif;
+    }
+
+div.tx-slub-zotero div.bib-item {
+        margin-bottom: 20px;
+    }

@@ -1,0 +1,111 @@
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Options</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.zotero.headline>
+            <TCEforms>
+              <label>Überschrift</label>
+              <config>
+                <type>input</type>
+                <size>100</size>
+                <default>Bibliografie</default>
+              </config>
+            </TCEforms>
+          </settings.zotero.headline>
+          <settings.zotero.selection>
+            <TCEforms>
+            <label>Auswahl des ID-Typs</label>
+                <config>
+                    <type>radio</type>
+                        <items type="array">
+                            <numIndex index="0" type="array">
+                            <numIndex index="0">UserID</numIndex>
+                            <numIndex index="1">users</numIndex>
+                            </numIndex>
+                            <numIndex index="1" type="array">
+                            <numIndex index="0">GroupID</numIndex>
+                            <numIndex index="1">groups</numIndex>
+                            </numIndex>
+                        </items>
+                </config>
+            </TCEforms>
+          </settings.zotero.selection>
+          <settings.zotero.id>
+            <TCEforms>
+              <label>userID or groupID</label>
+              <config>
+                <type>input</type>
+                <size>20</size>
+                <max>7</max>
+                <default></default>
+              </config>
+            </TCEforms>
+          </settings.zotero.id>
+          <settings.zotero.subCollection>
+                <TCEforms>
+                    <label>Unterkollektion</label>
+                    <config>
+                        <type>check</type>
+                        <default>0</default>
+                    </config>
+                </TCEforms>
+          </settings.zotero.subCollection>
+          <settings.zotero.subCollectionID>
+            <TCEforms>
+              <label>Unterkollektion ID</label>
+              <config>
+                <type>input</type>
+                <size>20</size>
+                <default></default>
+              </config>
+            </TCEforms>
+          </settings.zotero.subCollectionID>
+          <settings.zotero.key>
+            <TCEforms>
+              <label>API-Key</label>
+              <config>
+                <type>input</type>
+                <size>20</size>
+                <default></default>
+              </config>
+            </TCEforms>
+          </settings.zotero.key>
+          <settings.zotero.sorting>
+            <TCEforms>
+            <label>Aufsteigende oder absteigende Sortierung?</label>
+                <config>
+                    <type>radio</type>
+                        <items type="array">
+                            <numIndex index="0" type="array">
+                            <numIndex index="0">aufsteigend</numIndex>
+                            <numIndex index="1">asc</numIndex>
+                            </numIndex>
+                            <numIndex index="1" type="array">
+                            <numIndex index="0">absteigend</numIndex>
+                            <numIndex index="1">desc</numIndex>
+                            </numIndex>
+                        </items>
+                </config>
+            </TCEforms>
+          </settings.zotero.sorting>
+          <settings.zotero.style>
+            <TCEforms>
+              <label>CSL</label>
+              <config>
+                <type>input</type>
+                <size>100</size>
+                <max>100</max>
+                <default></default>
+              </config>
+            </TCEforms>
+          </settings.zotero.style>
+        </el>
+      </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>

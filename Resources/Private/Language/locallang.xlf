@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2019-03-18T13:28:49Z" product-name="slub_zotero">
+        <header/>
+        <body>
+            <trans-unit id="tx_slub_zotero_domain_model_zoterobib">
+                <source>SLUB: Bibliografie Plugin</source>
+            </trans-unit>
+            <trans-unit id="tx_slub_zotero_domain_model_zoterobib.description">
+                <source>This extension should call the zotero api and present the SLUB bibliography on the website.</source>
+            </trans-unit>
+            <trans-unit id="tx_slubzotero_domain_model_bibliografie">
+                <source>Bibliografie</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

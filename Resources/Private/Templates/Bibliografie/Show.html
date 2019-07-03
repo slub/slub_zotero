@@ -1,0 +1,54 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+This Template is responsible for displaying a single view for a domain object
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Show.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<h1>{headline}</h1><br />
+
+<f:flashMessages />
+<f:render partial="Bibliografie/Properties" arguments="{bibliografie:bibliografie}" />
+
+<f:for each="{presentation}" as="presentationValue" key="presentationKey">
+    <div class="bib-item">
+        <h3 class="collectiontitle">{presentationKey}</h3>
+        <f:for each="{presentationValue}" as="subItemValue" key="subItemKey">
+
+            <div class="citation"><code title="citation"> <f:format.raw>{subItemValue.citation}</f:format.raw> </code> <output></output></div>
+
+            <f:if condition="{subItemValue.data.doi}">
+                <f:then>
+                    <b><f:link.external uri="{subItemValue.data.doi}" class="extern" target="_blank">{subItemValue.key}</f:link.external></b>
+                </f:then>
+                <f:else>
+                    <f:if condition="{subItemValue.data.url}">
+                        <f:then>
+                            <b><f:link.external uri="{subItemValue.data.url}" class="extern" target="_blank">Link</f:link.external></b>
+                        </f:then>
+                    </f:if>
+                </f:else>
+            </f:if>
+
+            <f:if condition="{subItemValue.data.abstractNote}">
+                <f:then>
+                    <button onclick="toggleAbstract('{subItemValue.key}')">abstract</button>
+                    <div id="{subItemValue.key}" class="abstract">{subItemValue.data.abstractNote}</div>
+                </f:then>
+            </f:if>
+
+            <br />
+        </f:for>
+    </div>
+</f:for>
+
+</f:section>
+</html>
