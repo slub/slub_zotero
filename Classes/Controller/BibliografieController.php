@@ -24,8 +24,6 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      */
     public function listAction()
     {
-        //~ $bibliographies = $this->bibliographyRepository->findAll();
-        //~ $this->view->assign('bibliographies', $bibliographies);
         $headline = $this->settings['zotero']['headline'];
         $urlToCall = $this->buildUrl();
         $collection = $this->callParentCollection($urlToCall);
@@ -47,14 +45,15 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     public function showAction()
     {
         $headline = $this->settings['zotero']['headline'];
-        $urlToCall = $this->buildUrl();
-        $collection = $this->callParentCollection($urlToCall);
-        $secondRun = $this->getSubCollection($collection);
-        $arrayForPresentation = $this->callSubCollections($secondRun);
+        $yearKey = $this->request->getArgument('collection');
+        var_dump($yearKey);
+        $arrayForPresentation = $this->callSubCollections($this->request->getArgument('collection'));
+        var_dump($this->request->getArgument('collection'));
 
 
-        $this->view->assign('presentation', $arrayForPresentation);
         $this->view->assign('headline', $headline);
+        $this->view->assign('yearKey', $yearKey);
+        $this->view->assign('subCollection', $arrayForPresentation);
     }
 
     //url is build with user selected/provided informations
