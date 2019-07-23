@@ -9,7 +9,7 @@ call_user_func(
             'SLUB.SlubZotero',
             'Zoterobib',
             [
-                'Bibliografie' => 'show'
+                'Bibliografie' => 'list, show'
             ],
             // non-cacheable actions
             [

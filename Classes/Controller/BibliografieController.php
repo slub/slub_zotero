@@ -18,6 +18,28 @@ namespace SLUB\SlubZotero\Controller;
 class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
+     * action list
+     *
+     * @return void
+     */
+    public function listAction()
+    {
+        //~ $bibliographies = $this->bibliographyRepository->findAll();
+        //~ $this->view->assign('bibliographies', $bibliographies);
+        $headline = $this->settings['zotero']['headline'];
+        $urlToCall = $this->buildUrl();
+        $collection = $this->callParentCollection($urlToCall);
+        $secondRun = $this->getSubCollection($collection);
+        $sortedList = $this->sortCollection($secondRun);
+
+
+
+        $this->view->assign('presentation', $sortedList);
+        $this->view->assign('headline', $headline);
+
+    }
+
+    /**
      * action show
      *
      * @return void
