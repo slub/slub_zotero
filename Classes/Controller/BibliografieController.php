@@ -71,18 +71,15 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 
         $userOrGroupID = $this->settings['zotero']['id'].'/';
 
-        if($this->settings['zotero']['subCollection'])
-        {
-            $subCollections = 'collections/'.$this->settings['zotero']['subCollectionID'].'/collections?';
-        }
+        $mid = 'collections/'.$this->settings['zotero']['subCollectionID'].'/collections?';
 
         $format = 'format='.'json';
 
-        $limit = '&limit='.'10';
+        $limit = '&limit='.'5';
 
         $key = '&key='.$this->settings['zotero']['key'];
 
-        $url = $begin.$userOrGroupID.$subCollections.$format.$key;
+        $url = $begin.$userOrGroupID.$mid.$format.$key;
 
         return $url;
     }
