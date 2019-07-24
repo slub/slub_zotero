@@ -113,10 +113,10 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     }
 
     //api needs to be called again to get the actual items of the subcollections, needs to be called a third time because parameters don't work as suggested
-    function callSubCollections($subArray)
+    function callSubCollections($subCollection)
     {
         $i = 0;
-        $final =array();
+        $final = array();
         $subCollections = '';
 
         if($this->settings['zotero']['selection'] == 'users')
@@ -129,12 +129,10 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 
         $userOrGroupID = $this->settings['zotero']['id'].'/collections/';
 
-        foreach($subArray as $subArrayKey => $subArrayValue)
-        {
-            $apiAnswer = file_get_contents($begin.$userOrGroupID.$subArrayValue['key'].'/items?format=json&key='.$this->settings['zotero']['key']);
-            //"&include=citation" doesn't work as wanted, so api needs to be called again with diff parameters
+            $apiAnswer = file_get_contents($begin.$userOrGroupID.$subCollection['key'].'/items?format=json&key='.$this->settings['zotero']['key']);
 
-            $apiAnswerCitationWanted = file_get_contents($begin.$userOrGroupID.$subArrayValue['key'].'/items?format=json&include=citation&style='.$this->settings['zotero']['style'].'&key='.$this->settings['zotero']['key']);
+            //"&include=citation" doesn't work as wanted, so api needs to be called again with diff parameters
+            $apiAnswerCitationWanted = file_get_contents($begin.$userOrGroupID.$subCollection['key'].'/items?format=json&include=citation&style='.$this->settings['zotero']['style'].'&key='.$this->settings['zotero']['key']);
 
             $subCollectionItems = json_decode ($apiAnswer, true);
             $subCollectionItemsCitationWanted = json_decode ($apiAnswerCitationWanted, true);
@@ -149,23 +147,36 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
             {
                 $final[$i][$subCollectionItemsCitationWantedKey]['citation'] = $subCollectionItemsCitationWantedValue['citation'];
             }
-            $year = $subArrayValue['year'];
-            $final[$year] = $final[$i];
-            unset($final[$i]);
+        return $final;
+    }
+
+    //own handling because "&sort=date&direction=desc" doesn't work
+    function sortCollection($unsortedCollection)
+    {
+        $i = 0;
+        $sortedArray = array();
+
+        foreach($unsortedCollection as $unsortedCollectionKey => $unsortedCollectionValue)
+        {
+            $year= $unsortedCollectionValue['year'];
+            $sortedArray[$year] = $sortedArray[$i];
+            unset($sortedArray[$i]);
+
+            $sortedArray[$year]['year'] = $unsortedCollectionValue['year'];
+            $sortedArray[$year]['key'] = $unsortedCollectionValue['key'];
 
             $i++;
         }
 
-        //own handling because "&sort=date&direction=desc" doesn't work
         if($this->settings['zotero']['sorting'] == 'desc')
         {
-            krsort($final);
+            krsort($sortedArray);
         }
         else
         {
-            ksort($final);
+            ksort($sortedArray);
         }
-        return $final;
+        return $sortedArray;
     }
 
 }
