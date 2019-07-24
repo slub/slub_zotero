@@ -19,7 +19,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:for each="{presentation}" as="presentationValue" key="presentationKey">
 
-{presentationValue.year} : <button id="{presentationValue.key}">Werke für dieses Jahr anzeigen</button><br />
+{presentationValue.year} : <f:link.action action="show" id="{presentationValue.key}" controller="Bibliografie" arguments="{collection:'{presentationValue}'}">Werke für dieses Jahr anzeigen</f:link.action><br />
 
 </f:for>
 

@@ -46,9 +46,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     {
         $headline = $this->settings['zotero']['headline'];
         $yearKey = $this->request->getArgument('collection');
-        var_dump($yearKey);
         $arrayForPresentation = $this->callSubCollections($this->request->getArgument('collection'));
-        var_dump($this->request->getArgument('collection'));
 
 
         $this->view->assign('headline', $headline);
