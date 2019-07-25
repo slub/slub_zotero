@@ -54,7 +54,6 @@ plugin.tx_slubzotero._CSS_DEFAULT_STYLE (
 )
 page {
     includeCSS {
-        styles = EXT:slub_zotero/Resources/Public/Css/styles.css
         zotero = EXT:slub_zotero/Resources/Public/Css/zotero.css
     }
 
