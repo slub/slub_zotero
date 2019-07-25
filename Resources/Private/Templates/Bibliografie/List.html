@@ -13,15 +13,13 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>{headline}</h1><br />
+<p class="headline">{headline}</p><br />
 
 <f:flashMessages />
-
-<f:for each="{presentation}" as="presentationValue" key="presentationKey">
-
-{presentationValue.year} : <f:link.action action="show" id="{presentationValue.key}" controller="Bibliografie" arguments="{collection:'{presentationValue}'}">Werke für dieses Jahr anzeigen</f:link.action><br />
-
-</f:for>
-
+<div class="list parentcollection">
+    <f:for each="{presentation}" as="presentationValue" key="presentationKey">
+        <div class="name">{presentationValue.year}</div> : <div class="link"><f:link.action action="show" id="{presentationValue.key}" controller="Bibliografie" arguments="{collection:'{presentationValue}'}">Werke für dieses Jahr anzeigen</f:link.action></div><br />
+    </f:for>
+</div>
 </f:section>
 </html>

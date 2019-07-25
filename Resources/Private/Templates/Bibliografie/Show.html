@@ -13,7 +13,7 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>{headline} für das Jahr {yearKey.year}</h1>
+<p class="headline">{headline} für das Jahr {yearKey.year}</p>
 
 <f:flashMessages />
 <f:render partial="Bibliografie/Properties" arguments="{bibliografie:bibliografie}" />
@@ -26,12 +26,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
             <f:if condition="{subItemValue.data.doi}">
                 <f:then>
-                    <b><f:link.external uri="{subItemValue.data.doi}" class="extern" target="_blank">{subItemValue.key}</f:link.external></b>
+                    <div class="link"><f:link.external uri="{subItemValue.data.doi}" class="extern" target="_blank">{subItemValue.key}</f:link.external></div>
                 </f:then>
                 <f:else>
                     <f:if condition="{subItemValue.data.url}">
                         <f:then>
-                            <b><f:link.external uri="{subItemValue.data.url}" class="extern" target="_blank">Link</f:link.external></b>
+                            <div class="link"><f:link.external uri="{subItemValue.data.url}" class="extern" target="_blank">Link</f:link.external></div>
                         </f:then>
                     </f:if>
                 </f:else>
