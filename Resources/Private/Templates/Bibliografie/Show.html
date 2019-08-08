@@ -13,43 +13,36 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<p class="headline">{headline} für das Jahr {yearKey.year}</p>
 
 <f:flashMessages />
-<f:render partial="Bibliografie/Properties" arguments="{bibliografie:bibliografie}" />
 
-<f:for each="{subCollection}" as="presentationValue" key="presentationKey">
+<f:for each="{subCollection.0}"  as="presentationValue" key="presentationKey">
     <div class="bib-item">
-        <f:for each="{presentationValue}" as="subItemValue" key="subItemKey">
+        <div class="citation"><code title="citation"> <f:format.raw>{presentationValue.citation}</f:format.raw> </code> <output></output></div>
 
-            <div class="citation"><code title="citation"> <f:format.raw>{subItemValue.citation}</f:format.raw> </code> <output></output></div>
+        <f:if condition="{presentationValue.data.doi}">
+            <f:then>
+                <div class="link"><f:link.external uri="{presentationValue.data.doi}" class="extern" target="_blank">{presentationValue.key}</f:link.external></div>
+            </f:then>
+            <f:else>
+                <f:if condition="{presentationValue.data.url}">
+                    <f:then>
+                        <div class="link"><f:link.external uri="{presentationValue.data.url}" class="extern" target="_blank">Link</f:link.external></div>
+                    </f:then>
+                </f:if>
+            </f:else>
+        </f:if>
 
-            <f:if condition="{subItemValue.data.doi}">
-                <f:then>
-                    <div class="link"><f:link.external uri="{subItemValue.data.doi}" class="extern" target="_blank">{subItemValue.key}</f:link.external></div>
-                </f:then>
-                <f:else>
-                    <f:if condition="{subItemValue.data.url}">
-                        <f:then>
-                            <div class="link"><f:link.external uri="{subItemValue.data.url}" class="extern" target="_blank">Link</f:link.external></div>
-                        </f:then>
-                    </f:if>
-                </f:else>
-            </f:if>
+        <f:if condition="{presentationValue.data.abstractNote}">
+            <f:then>
+                <button onclick="toggleAbstract('{presentationValue.key}')">abstract</button>
+                <div id="{presentationValue.key}" class="abstract">{presentationValue.data.abstractNote}</div>
+            </f:then>
+        </f:if>
 
-            <f:if condition="{subItemValue.data.abstractNote}">
-                <f:then>
-                    <button onclick="toggleAbstract('{subItemValue.key}')">abstract</button>
-                    <div id="{subItemValue.key}" class="abstract">{subItemValue.data.abstractNote}</div>
-                </f:then>
-            </f:if>
-
-            <br />
-        </f:for>
+        <br />
     </div>
 </f:for>
-
-<f:link.action action="list">Zurück zur Übersicht</f:link.action><br />
 
 </f:section>
 </html>

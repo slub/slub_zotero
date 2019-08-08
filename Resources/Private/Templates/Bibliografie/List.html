@@ -13,13 +13,19 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<p class="headline">{headline}</p><br />
+
+<div class="headline">{headline}</div><br />
 
 <f:flashMessages />
+
 <div class="list parentcollection">
+
     <f:for each="{presentation}" as="presentationValue" key="presentationKey">
-        <div class="name">{presentationValue.year}</div> : <div class="link"><f:link.action action="show" id="{presentationValue.key}" controller="Bibliografie" arguments="{collection:'{presentationValue}'}">Werke für dieses Jahr anzeigen</f:link.action></div><br />
+        {presentationValue.year} : <button data-target="{presentationValue.key}" class="openitems" data-ajaxurl="<f:uri.action action="show" pageType="99" controller="Bibliografie" arguments="{collection:'{presentationValue}'}" />">Werke für dieses Jahr anzeigen</button>
+        <div id="{presentationValue.key}"></div>
     </f:for>
+
 </div>
+
 </f:section>
 </html>

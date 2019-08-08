@@ -40,6 +40,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     /**
      * action show
      *
+     *
      * @return void
      */
     public function showAction()

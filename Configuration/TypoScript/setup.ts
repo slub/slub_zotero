@@ -52,12 +52,40 @@ plugin.tx_slubzotero._CSS_DEFAULT_STYLE (
         color:green;
     }
 )
+
+show = PAGE
+show {
+    typeNum = 99
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/json
+        admPanel = 0
+        debug = 0
+    }
+
+    10 < styles.content.get
+    10 {
+        stdWrap.trim = 1
+        select {
+            where = list_type = "slubzotero_zoterobib"
+        }
+
+        renderObj < tt_content.list.20.slubzotero_zoterobib
+    }
+}
+
 page {
     includeCSS {
         zotero = EXT:slub_zotero/Resources/Public/Css/zotero.css
     }
 
-    includeJSLibs {
+    includeJS {
+
+        jquery = //code.jquery.com/jquery.js
+        jquery.forceOnTop = 1
+        jquery.external = 1
+        jqueryloading = //cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.6/dist/loadingoverlay.min.js
+        jqueryloading.external = 1
         zoterojs = EXT:slub_zotero/Resources/Public/Js/zotero.js
     }
 }
