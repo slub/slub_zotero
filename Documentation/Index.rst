@@ -57,4 +57,3 @@ SLUB Bibliografie
 	User/Index
 	Configuration/Index
 	KnownProblems/Index
-	Links

@@ -12,7 +12,7 @@ Users Manual
 ============
 
 The following document holds information about the installation of the TYPO3
-SLUB_EntityFacts extension. In case of further questions please contact the
+SLUB Zotero extension. In case of further questions please contact the
 release management.
 
 This TYPO3 extension is primarily meant to visualize a zotero.org hosted
