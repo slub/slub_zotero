@@ -1,0 +1,32 @@
+{
+  "name": "slub/slub-zotero",
+  "type": "typo3-cms-extension",
+  "description": "This extension should call the zotero api and present the SLUB bibliography on the website.",
+  "homepage": "https://github.com/slub/slub_zotero",
+  "keywords": [
+    "TYPO3",
+    "extension",
+    "slub_zotero"
+  ],
+  "authors": [
+    {
+      "name": "Sebastian Semsker",
+      "email": "sebastian.semsker@slub-dresden.de",
+      "role": "Developer"
+    },
+    {
+      "name": "Alexander Bigga",
+      "email": "alexander.bigga@slub-dresden.de",
+      "role": "Developer"
+    }
+  ],
+  "license": "GPL-3.0-or-later",
+  "require": {
+    "typo3/cms-core": "~7.6.23|~8.7.27"
+  },
+  "autoload": {
+    "psr-4": {
+      "Slub\\SlubZotero\\": "Classes/"
+    }
+  }
+}
