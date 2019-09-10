@@ -1,5 +1,5 @@
 <?php
-namespace SLUB\SlubZotero\Tests\Unit\Domain\Model;
+namespace Slub\SlubZotero\Tests\Unit\Domain\Model;
 
 /**
  * Test case.
@@ -7,14 +7,14 @@ namespace SLUB\SlubZotero\Tests\Unit\Domain\Model;
 class BibliografieTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
     /**
-     * @var \SLUB\SlubZotero\Domain\Model\Bibliografie
+     * @var \Slub\SlubZotero\Domain\Model\Bibliografie
      */
     protected $subject = null;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->subject = new \SLUB\SlubZotero\Domain\Model\Bibliografie();
+        $this->subject = new \Slub\SlubZotero\Domain\Model\Bibliografie();
     }
 
     protected function tearDown()

@@ -1,5 +1,5 @@
 <?php
-namespace SLUB\SlubZotero\Tests\Unit\Controller;
+namespace Slub\SlubZotero\Tests\Unit\Controller;
 
 /**
  * Test case.
@@ -7,14 +7,14 @@ namespace SLUB\SlubZotero\Tests\Unit\Controller;
 class BibliografieControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
     /**
-     * @var \SLUB\SlubZotero\Controller\BibliografieController
+     * @var \Slub\SlubZotero\Controller\BibliografieController
      */
     protected $subject = null;
 
     protected function setUp()
     {
         parent::setUp();
-        $this->subject = $this->getMockBuilder(\SLUB\SlubZotero\Controller\BibliografieController::class)
+        $this->subject = $this->getMockBuilder(\Slub\SlubZotero\Controller\BibliografieController::class)
             ->setMethods(['redirect', 'forward', 'addFlashMessage'])
             ->disableOriginalConstructor()
             ->getMock();
@@ -30,7 +30,7 @@ class BibliografieControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function showActionAssignsTheGivenBibliografieToView()
     {
-        $bibliografie = new \SLUB\SlubZotero\Domain\Model\Bibliografie();
+        $bibliografie = new \Slub\SlubZotero\Domain\Model\Bibliografie();
 
         $view = $this->getMockBuilder(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface::class)->getMock();
         $this->inject($this->subject, 'view', $view);

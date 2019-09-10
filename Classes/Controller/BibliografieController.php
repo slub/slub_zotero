@@ -1,5 +1,5 @@
 <?php
-namespace SLUB\SlubZotero\Controller;
+namespace Slub\SlubZotero\Controller;
 
 /***
  *

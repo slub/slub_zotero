@@ -1,5 +1,5 @@
 <?php
-namespace SLUB\SlubZotero\Domain\Model;
+namespace Slub\SlubZotero\Domain\Model;
 
 /***
  *
@@ -17,4 +17,4 @@ namespace SLUB\SlubZotero\Domain\Model;
  */
 class Bibliografie extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-    }
+}
