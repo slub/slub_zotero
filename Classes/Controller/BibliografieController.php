@@ -62,23 +62,18 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 
         if($this->settings['zotero']['selection'] == 'users')
         {
-            $begin = 'https://api.zotero.org/users/';
+            $url = 'https://api.zotero.org/users/';
         }else
         {
-            $begin = 'https://api.zotero.org/groups/';
+            $url = 'https://api.zotero.org/groups/';
         }
 
-        $userOrGroupID = $this->settings['zotero']['id'].'/';
+        if ($this->settings['zotero']['id']) $url .= $this->settings['zotero']['id'].'/';
 
-        $mid = 'collections/'.$this->settings['zotero']['subCollectionID'].'/collections?';
-
-        $format = 'format='.'json';
-
-        $limit = '&limit='.'5';
-
-        $key = '&key='.$this->settings['zotero']['key'];
-
-        $url = $begin.$userOrGroupID.$mid.$format.$key;
+        $url .= ($this->settings['zotero']['subCollectionID']) ? 'collections/'.$this->settings['zotero']['subCollectionID'].'/collections?' : '/collections?';
+        $url .= 'format='.'json';
+        $url .= '&limit='.'5';
+        $url .= '&key='.$this->settings['zotero']['key'];
 
         return $url;
     }
