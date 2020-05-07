@@ -4,7 +4,7 @@
         <header/>
         <body>
             <trans-unit id="tx_slub_zotero_domain_model_zoterobib">
-                <source>SLUB: Bibliografie Plugin</source>
+                <source>SLUB: Zotero Bibliografie</source>
             </trans-unit>
             <trans-unit id="tx_slub_zotero_domain_model_zoterobib.description">
                 <source>This extension should call the zotero api and present the SLUB bibliography on the website.</source>
