@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2019-03-18T13:28:49Z" product-name="slub_zotero">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-03-18T13:28:49Z" product-name="slub_zotero">
         <header/>
         <body>
             <trans-unit id="show.creations">
-                <source>show creations</source>
+                <target>zeige Werke</target>
             </trans-unit>
             <trans-unit id="show.abstract">
-                <source>show.abstract</source>
+                <target>zeige Zusammenfassung</target>
             </trans-unit>
         </body>
     </file>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-03-18T13:28:49Z" product-name="slub_zotero">
+        <header/>
+        <body>
+            <trans-unit id="wizard.title">
+                <target>SLUB: Zotero Bibliografie</target>
+            </trans-unit>
+            <trans-unit id="wizard.description">
+                <target>Die Extension nutzt die Zotero API um Bibliografien anzuzeigen.</target>
+            </trans-unit>
+            <trans-unit id="flexform.title">
+                <target>Zotero API Konfiguration</target>
+            </trans-unit>
+            <trans-unit id="flexform.type">
+                <target>Wählen Sie einen Zotero API Typ</target>
+            </trans-unit>
+            <trans-unit id="flexform.type.groups">
+                <target>Gruppenabfrage</target>
+            </trans-unit>
+            <trans-unit id="flexform.type.users">
+                <target>Nutzerabfrage</target>
+            </trans-unit>
+            <trans-unit id="flexform.key">
+                <target>Zotero API Schlüßel</target>
+            </trans-unit>
+            <trans-unit id="flexform.id">
+                <target>Ihre Zotero API ID (Nutzer oder Gruppen Id je nach Typ)</target>
+            </trans-unit>
+            <trans-unit id="flexform.subCollectionId">
+                <target>Wahlweise die Id einer Unterkollektion</target>
+            </trans-unit>
+            <trans-unit id="flexform.sorting">
+                <target>Sortierung</target>
+            </trans-unit>
+            <trans-unit id="flexform.sorting.field">
+                <target>Feld der Sortierung</target>
+            </trans-unit>
+            <trans-unit id="flexform.sorting.asc">
+                <target>aufsteigend</target>
+            </trans-unit>
+            <trans-unit id="flexform.sorting.desc">
+                <target>absteigend</target>
+            </trans-unit>
+            <trans-unit id="flexform.style">
+                <target>Zotero Style (z.B.: technische-universitat-dresden-historische-musikwissenschaft-note)</target>
+            </trans-unit>
+            <trans-unit id="flexform.action">
+                <target>Abfrage Aktion</target>
+            </trans-unit>
+            <trans-unit id="flexform.action.collections">
+                <target>Kollektionen (collections)</target>
+            </trans-unit>
+            <trans-unit id="flexform.action.items">
+                <target>Titel (items)</target>
+            </trans-unit>
+            <trans-unit id="flexform.action.items.top">
+                <target>Top Titel (items/top)</target>
+            </trans-unit>
+            <trans-unit id="flexform.limit">
+                <target>Limit der Abfrage</target>
+            </trans-unit>
+            <trans-unit id="flexform.titleLink">
+                <target>Verlinke den Titel des Werkes</target>
+            </trans-unit>
+            <trans-unit id="flexform.linkWrap">
+                <target>Verlinke die Url zum Werk</target>
+            </trans-unit>
+            <trans-unit id="flexform.ajaxMode">
+                <target>Ajaxmode</target>
+            </trans-unit>
+            <trans-unit id="flexform.virtualCollection">
+                <target>Erzeuge eine vituelle Kollektion mit dem Veröffentlichungsjahr.</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

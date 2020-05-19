@@ -1,5 +1,5 @@
-function toggleAbstract(nr) {
-    $("div#"+nr).toggle();
+function zoteroToggleAbstract(id) {
+    $("div#"+id).toggle();
 }
 
 $(document).ready(function()

@@ -10,38 +10,43 @@ plugin.tx_slubzotero_zoterobib {
   }
 }
 
-show = PAGE
-show {
-    typeNum = 99
-    config {
-        disableAllHeaderCode = 1
-        additionalHeaders = Content-type:application/json
-        admPanel = 0
-        debug = 0
-    }
-
-    10 < styles.content.get
-    10 {
-        stdWrap.trim = 1
-        select {
-            where = list_type = "slubzotero_zoterobib"
-        }
-
-        renderObj < tt_content.list.20.slubzotero_zoterobib
-    }
+# add required css
+page.includeCSS {
+  zotero = {$plugin.tx_slubzotero_zoterobib.config.css.file}
 }
 
-page {
-    includeCSS {
-        zotero = EXT:slub_zotero/Resources/Public/Css/zotero.css
-    }
+# add jquery js
+[{$plugin.tx_slubzotero_zoterobib.config.js.addJquery} == 1]
+  page.includeJSFooterlibs.jquery = //code.jquery.com/jquery.js
+  page.includeJSFooterlibs.jquery {
+    jquery.forceOnTop = 1
+    jquery.external = 1
+  }
+[global]
 
-    includeJSFooterlibs {
-        # jquery = //code.jquery.com/jquery.js
-        # jquery.forceOnTop = 1
-        # jquery.external = 1
+# add required js
+page.includeJSFooterlibs {
+  jqueryLoadingOverlay = {$plugin.tx_slubzotero_zoterobib.config.js.jqueryLoadingOverlayFile}
+  zotero = {$plugin.tx_slubzotero_zoterobib.config.js.zoteroFile}
+}
 
-        jquery_loadingoverlay = EXT:slub_zotero/Resources/Public/Js/loadingoverlay.min.js
-        slub_zotero_js = EXT:slub_zotero/Resources/Public/Js/zotero.js
+
+# ajax call
+show = PAGE
+show {
+  typeNum = 6452187564
+  config {
+    disableAllHeaderCode = 1
+    additionalHeaders = Content-type:application/json
+    admPanel = 0
+    debug = 0
+  }
+  10 < styles.content.get
+  10 {
+    stdWrap.trim = 1
+    select {
+        where = list_type = "slubzotero_zoterobib"
     }
+    renderObj < tt_content.list.20.slubzotero_zoterobib
+  }
 }

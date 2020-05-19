@@ -24,8 +24,8 @@ call_user_func(
                 elements {
                     zoterobib {
                         icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($extKey) . 'Resources/Public/Icons/user_plugin_zoterobib.svg
-                        title = LLL:EXT:slub_zotero/Resources/Private/Language/locallang_db.xlf:tx_slub_zotero_domain_model_zoterobib
-                        description = LLL:EXT:slub_zotero/Resources/Private/Language/locallang_db.xlf:tx_slub_zotero_domain_model_zoterobib.description
+                        title = LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:wizard.title
+                        description = LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:wizard.description
                         tt_content_defValues {
                             CType = list
                             list_type = slubzotero_zoterobib
