@@ -36,14 +36,14 @@
             <trans-unit id="flexform.sorting.field">
                 <source>sorting field</source>
             </trans-unit>
-            <trans-unit id="flexform.asc">
+            <trans-unit id="flexform.sorting.asc">
                 <source>ascending</source>
             </trans-unit>
-            <trans-unit id="flexform.desc">
+            <trans-unit id="flexform.sorting.desc">
                 <source>descending</source>
             </trans-unit>
             <trans-unit id="flexform.style">
-                <source>The zotero style (eg.: technische-universitat-dresden-historische-musikwissenschaft-note)</source>
+                <source>the zotero style (eg.: technische-universitat-dresden-historische-musikwissenschaft-note)</source>
             </trans-unit>
             <trans-unit id="flexform.action">
                 <source>select zotero api action</source>
