@@ -11,7 +11,7 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'SLUB Bibliografie',
+    'title' => 'SLUB: Zotero Bibliografie',
     'description' => 'This extension should call the zotero api and present the SLUB bibliography on the website.',
     'category' => 'plugin',
     'author' => 'Sebastian Semsker',
@@ -24,7 +24,7 @@ $EM_CONF[$_EXTKEY] = [
     'version' => '1.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '7.6.0-8.7.99',
+            'typo3' => '7.6.0-9.5.99',
         ],
         'conflicts' => [],
         'suggests' => [],

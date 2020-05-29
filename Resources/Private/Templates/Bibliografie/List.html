@@ -13,19 +13,24 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-
-<div class="headline">{headline}</div><br />
-
-<f:flashMessages />
-
-<div class="list parentcollection">
-
-    <f:for each="{presentation}" as="presentationValue" key="presentationKey">
-        {presentationValue.year} : <button data-target="{presentationValue.key}" class="openitems" data-ajaxurl="<f:uri.action action="show" pageType="99" controller="Bibliografie" arguments="{collection:'{presentationValue}'}" />">Werke für dieses Jahr anzeigen</button>
-        <div id="{presentationValue.key}"></div>
-    </f:for>
-
-</div>
-
+  <f:flashMessages />
+  <div class="tx-slub-zotero-collections">
+      <f:for each="{collections}" as="collection">
+        <f:if condition="{collection.data.title}">
+          <h3 class="tx-slub-zotero-collection-title">{collection.data.title}</h3>
+        </f:if>
+        <f:if condition="{collection.items}">
+          <f:then>
+            <f:for each="{collection.items}" as="item">
+              <f:render partial="Bibliografie/Item" section="Item" arguments="{item: item}" />
+            </f:for>
+          </f:then>
+          <f:else>
+            {collection.data.name} : <button data-target="{collection.key}" class="openitems" data-ajaxurl="{f:uri.action(action: 'show', pageType: '6452187564', controller: 'Bibliografie', arguments: {collection:collection.key})}"><f:translate key="LLL:EXT:slub_zotero/Resources/Private/Language/locallang.xlf:show.creations" /></button>
+            <div id="{collection.key}"></div>
+          </f:else>
+        </f:if>
+      </f:for>
+  </div>
 </f:section>
 </html>

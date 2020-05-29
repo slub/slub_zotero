@@ -1,11 +1,24 @@
-div.tx-slub-zotero div.abstract {
-        display: none;
-    }
-
-div.tx-slub-zotero div.citation {
-        font-family: VistaSlabReg,Arial,Helvetica,Sans-Serif;
-    }
-
 div.tx-slub-zotero div.bib-item {
-        margin-bottom: 20px;
-    }
+    font-family: VistaSlabReg,Arial,Helvetica,Sans-Serif;
+    margin-bottom: 20px;
+}
+
+div.tx-slub-zotero div.bib-item div.abstract {
+    display: none;
+    margin: 10px 30px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: silver;
+    border-image: initial;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+div.tx-slub-zotero div.bib-item div.blink a {
+    border: 1px solid silver;
+    padding: 0 5px;
+    background-color: #d5d5d5;
+    border-radius: 3px;
+    position: relative;
+    top: 3px;
+}

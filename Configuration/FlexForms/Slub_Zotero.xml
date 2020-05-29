@@ -1,0 +1,241 @@
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.title</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <settings.zotero.type>
+            <TCEforms>
+            <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.type</label>
+                <config>
+                    <type>radio</type>
+                      <items type="array">
+                          <numIndex index="0" type="array">
+                            <numIndex index="0">LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.type.users</numIndex>
+                            <numIndex index="1">users</numIndex>
+                          </numIndex>
+                          <numIndex index="1" type="array">
+                            <numIndex index="0">LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.type.groups</numIndex>
+                            <numIndex index="1">groups</numIndex>
+                          </numIndex>
+                      </items>
+                      <default>groups</default>
+                      <eval>required</eval>
+                </config>
+            </TCEforms>
+          </settings.zotero.type>
+          <settings.zotero.action>
+            <TCEforms>
+            <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.action</label>
+                <config>
+                    <type>radio</type>
+                      <items type="array">
+                          <numIndex index="0" type="array">
+                            <numIndex index="0">LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.action.collections</numIndex>
+                            <numIndex index="1">collections</numIndex>
+                          </numIndex>
+                          <numIndex index="1" type="array">
+                            <numIndex index="0">LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.action.items</numIndex>
+                            <numIndex index="1">items</numIndex>
+                          </numIndex>
+                          <numIndex index="2" type="array">
+                            <numIndex index="0">LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.action.items.top</numIndex>
+                            <numIndex index="1">items/top</numIndex>
+                          </numIndex>
+                      </items>
+                      <default>collections</default>
+                      <eval>required</eval>
+                </config>
+            </TCEforms>
+          </settings.zotero.action>
+          <settings.zotero.key>
+            <TCEforms>
+              <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.key</label>
+              <config>
+                <type>input</type>
+                <size>20</size>
+                <eval>required</eval>
+              </config>
+            </TCEforms>
+          </settings.zotero.key>
+          <settings.zotero.id>
+            <TCEforms>
+              <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.id</label>
+              <config>
+                <type>input</type>
+                <size>20</size>
+                <max>7</max>
+                <eval>required</eval>
+              </config>
+            </TCEforms>
+          </settings.zotero.id>
+          <settings.zotero.subCollectionId>
+            <TCEforms>
+              <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.subCollectionId</label>
+              <config>
+                <type>input</type>
+                <size>20</size>
+                <default></default>
+              </config>
+            </TCEforms>
+          </settings.zotero.subCollectionId>
+          <settings.zotero.limit>
+            <TCEforms>
+              <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.limit</label>
+              <config>
+                <type>input</type>
+                <size>20</size>
+                <default></default>
+              </config>
+            </TCEforms>
+          </settings.zotero.limit>
+          <settings.zotero.sortingField>
+            <TCEforms>
+              <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.sorting.field</label>
+              <config>
+                <type>select</type>
+                <renderType>selectSingle</renderType>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">dateAdded</numIndex>
+                    <numIndex index="1">dateAdded</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">dateModified</numIndex>
+                    <numIndex index="1">dateModified</numIndex>
+                  </numIndex>
+                  <!--
+                  <numIndex index="2" type="array">
+                    <numIndex index="0">title</numIndex>
+                    <numIndex index="1">title</numIndex>
+                  </numIndex>
+                  <numIndex index="3" type="array">
+                    <numIndex index="0">creator</numIndex>
+                    <numIndex index="1">creator</numIndex>
+                  </numIndex>
+                  <numIndex index="4" type="array">
+                    <numIndex index="0">itemType</numIndex>
+                    <numIndex index="1">itemType</numIndex>
+                  </numIndex>
+                  <numIndex index="5" type="array">
+                    <numIndex index="0">date</numIndex>
+                    <numIndex index="1">date</numIndex>
+                  </numIndex>
+                  <numIndex index="6" type="array">
+                    <numIndex index="0">publisher</numIndex>
+                    <numIndex index="1">publisher</numIndex>
+                  </numIndex>
+                  <numIndex index="7" type="array">
+                    <numIndex index="0">publicationTitle</numIndex>
+                    <numIndex index="1">publicationTitle</numIndex>
+                  </numIndex>
+                  <numIndex index="8" type="array">
+                    <numIndex index="0">journalAbbreviation</numIndex>
+                    <numIndex index="1">journalAbbreviation</numIndex>
+                  </numIndex>
+                  <numIndex index="9" type="array">
+                    <numIndex index="0">language</numIndex>
+                    <numIndex index="1">language</numIndex>
+                  </numIndex>
+                  <numIndex index="10" type="array">
+                    <numIndex index="0">accessDate</numIndex>
+                    <numIndex index="1">accessDate</numIndex>
+                  </numIndex>
+                  <numIndex index="11" type="array">
+                    <numIndex index="0">libraryCatalog</numIndex>
+                    <numIndex index="1">libraryCatalog</numIndex>
+                  </numIndex>
+                  <numIndex index="12" type="array">
+                    <numIndex index="0">callNumber</numIndex>
+                    <numIndex index="1">callNumber</numIndex>
+                  </numIndex>
+                  <numIndex index="13" type="array">
+                    <numIndex index="0">rights</numIndex>
+                    <numIndex index="1">rights</numIndex>
+                  </numIndex>
+                  <numIndex index="14" type="array">
+                    <numIndex index="0">addedBy</numIndex>
+                    <numIndex index="1">addedBy</numIndex>
+                  </numIndex>
+                  <numIndex index="15" type="array">
+                    <numIndex index="0">numItems</numIndex>
+                    <numIndex index="1">numItems</numIndex>
+                  </numIndex>
+                  -->
+                </items>
+                <default>dateAdded</default>
+              </config>
+            </TCEforms>
+          </settings.zotero.sortingField>
+          <settings.zotero.sorting>
+            <TCEforms>
+            <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.sorting</label>
+              <config>
+                <type>radio</type>
+                <items type="array">
+                  <numIndex index="0" type="array">
+                    <numIndex index="0">LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.sorting.asc</numIndex>
+                    <numIndex index="1">asc</numIndex>
+                  </numIndex>
+                  <numIndex index="1" type="array">
+                    <numIndex index="0">LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.sorting.desc</numIndex>
+                    <numIndex index="1">desc</numIndex>
+                  </numIndex>
+                </items>
+                <default>asc</default>
+              </config>
+            </TCEforms>
+          </settings.zotero.sorting>
+          <settings.zotero.style>
+            <TCEforms>
+              <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.style</label>
+              <config>
+                <type>input</type>
+                <size>100</size>
+                <max>100</max>
+                <default></default>
+              </config>
+            </TCEforms>
+          </settings.zotero.style>
+          <settings.zotero.titleLink>
+            <TCEforms>
+              <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.titleLink</label>
+              <config>
+                <type>check</type>
+              </config>
+            </TCEforms>
+          </settings.zotero.titleLink>
+          <settings.zotero.linkWrap>
+            <TCEforms>
+              <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.linkWrap</label>
+              <config>
+                <type>check</type>
+              </config>
+            </TCEforms>
+          </settings.zotero.linkWrap>
+          <settings.zotero.virtualCollection>
+            <TCEforms>
+              <displayCond>FIELD:settings.zotero.action:=:collections</displayCond>
+              <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.virtualCollection</label>
+              <config>
+                <type>check</type>
+              </config>
+            </TCEforms>
+          </settings.zotero.virtualCollection>
+          <settings.zotero.ajaxMode>
+            <TCEforms>
+              <displayCond>FIELD:settings.zotero.action:=:collections</displayCond>
+              <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.ajaxMode</label>
+              <config>
+                <type>check</type>
+              </config>
+            </TCEforms>
+          </settings.zotero.ajaxMode>
+        </el>
+      </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>

@@ -15,34 +15,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:section name="main">
 
 <f:flashMessages />
-
-<f:for each="{subCollection.0}"  as="presentationValue" key="presentationKey">
-    <div class="bib-item">
-        <div class="citation"><code title="citation"> <f:format.raw>{presentationValue.citation}</f:format.raw> </code> <output></output></div>
-
-        <f:if condition="{presentationValue.data.doi}">
-            <f:then>
-                <div class="link"><f:link.external uri="{presentationValue.data.doi}" class="extern" target="_blank">{presentationValue.key}</f:link.external></div>
-            </f:then>
-            <f:else>
-                <f:if condition="{presentationValue.data.url}">
-                    <f:then>
-                        <div class="link"><f:link.external uri="{presentationValue.data.url}" class="extern" target="_blank">Link</f:link.external></div>
-                    </f:then>
-                </f:if>
-            </f:else>
-        </f:if>
-
-        <f:if condition="{presentationValue.data.abstractNote}">
-            <f:then>
-                <button onclick="toggleAbstract('{presentationValue.key}')">abstract</button>
-                <div id="{presentationValue.key}" class="abstract">{presentationValue.data.abstractNote}</div>
-            </f:then>
-        </f:if>
-
-        <br />
-    </div>
-</f:for>
-
+  <f:for each="{items}" as="item">
+    <f:render partial="Bibliografie/Item" section="Item" arguments="{item: item}" />
+  </f:for>
 </f:section>
 </html>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2019-03-18T13:28:49Z" product-name="slub_zotero">
+        <header/>
+        <body>
+            <trans-unit id="wizard.title">
+                <source>SLUB: Zotero Bibliography</source>
+            </trans-unit>
+            <trans-unit id="wizard.description">
+                <source>This extension should call the zotero api and present the SLUB bibliography on the website.</source>
+            </trans-unit>
+            <trans-unit id="flexform.title">
+                <source>zotero API config</source>
+            </trans-unit>
+            <trans-unit id="flexform.type">
+                <source>select zotero api type</source>
+            </trans-unit>
+            <trans-unit id="flexform.type.groups">
+                <source>groups query</source>
+            </trans-unit>
+            <trans-unit id="flexform.type.users">
+                <source>users query</source>
+            </trans-unit>
+            <trans-unit id="flexform.key">
+                <source>zotero api key</source>
+            </trans-unit>
+            <trans-unit id="flexform.id">
+                <source>insert your user or group id</source>
+            </trans-unit>
+            <trans-unit id="flexform.subCollectionId">
+                <source>optional a child collection</source>
+            </trans-unit>
+            <trans-unit id="flexform.sorting">
+                <source>sorting</source>
+            </trans-unit>
+            <trans-unit id="flexform.sorting.field">
+                <source>sorting field</source>
+            </trans-unit>
+            <trans-unit id="flexform.sorting.asc">
+                <source>ascending</source>
+            </trans-unit>
+            <trans-unit id="flexform.sorting.desc">
+                <source>descending</source>
+            </trans-unit>
+            <trans-unit id="flexform.style">
+                <source>the zotero style (eg.: technische-universitat-dresden-historische-musikwissenschaft-note)</source>
+            </trans-unit>
+            <trans-unit id="flexform.action">
+                <source>select zotero api action</source>
+            </trans-unit>
+            <trans-unit id="flexform.action.collections">
+                <source>collections action</source>
+            </trans-unit>
+            <trans-unit id="flexform.action.items">
+                <source>items action</source>
+            </trans-unit>
+            <trans-unit id="flexform.action.items.top">
+                <source>items/top action</source>
+            </trans-unit>
+            <trans-unit id="flexform.limit">
+                <source>limit of API-request</source>
+            </trans-unit>
+            <trans-unit id="flexform.titleLink">
+                <source>Set a link around the title of a work</source>
+            </trans-unit>
+            <trans-unit id="flexform.linkWrap">
+                <source>Set a link around the url of a work</source>
+            </trans-unit>
+            <trans-unit id="flexform.ajaxMode">
+                <source>Use plugin ajax mode</source>
+            </trans-unit>
+            <trans-unit id="flexform.virtualCollection">
+                <source>Generate a virtual collection with the release year.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

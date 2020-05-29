@@ -1,0 +1,25 @@
+<f:section name="Item">
+  <f:if condition="{item.meta.parsedDate}">
+    <br />
+    <div class="tx-slub-zotero-item bib-item">
+      <f:if condition="{item.bib}">
+        <f:format.raw>{item.bib}</f:format.raw>
+      </f:if>
+
+      <f:if condition="{item.data.abstractNote}">
+        <f:then>
+          <div class="blink"><a onclick="zoteroToggleAbstract('{item.key}')"><f:translate key="LLL:EXT:slub_zotero/Resources/Private/Language/locallang.xlf:show.abstract" /></a></div>
+          <div id="{item.key}" class="abstract">{item.data.abstractNote}</div>
+        </f:then>
+      </f:if>
+
+      <f:if condition="{item.children}">
+        <div class="blink">
+          <f:for each="{item.children}" as="childItem">
+            <f:link.external uri="{childItem.data.url}" class="extern" target="_blank">{childItem.data.title}</f:link.external>
+          </f:for>
+        </div>
+      </f:if>
+    </div>
+  </f:if>
+</f:section>

@@ -8,14 +8,14 @@ call_user_func(
       \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
           'Slub.SlubZotero',
           'Zoterobib',
-          'SLUB Bibliografie Plugin'
+          'SLUB: Zotero Bibliografie'
       );
 
       $pluginSignature = 'slubzotero_zoterobib';
       $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
       \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
         $pluginSignature,
-        'FILE:EXT:slub_zotero/Configuration/FlexForms/FF_Slub_Zotero_Zoterobib.xml'
+        'FILE:EXT:slub_zotero/Configuration/FlexForms/Slub_Zotero.xml'
       );
 
     },

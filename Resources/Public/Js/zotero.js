@@ -1,9 +1,14 @@
-function toggleAbstract(nr) {
-    $("div#"+nr).toggle();
+function zoteroToggleAbstract(id) {
+    $("div#"+id).toggle();
 }
 
 $(document).ready(function()
 {
+    $.LoadingOverlaySetup({
+        background      : "rgba(0, 0, 0, 0.5)",
+        imageColor      : "#c00"
+    });
+
     $('.openitems').click(function()
     {
         var ajaxURL = $(this).data('ajaxurl');
