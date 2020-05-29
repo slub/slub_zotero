@@ -36,7 +36,6 @@ call_user_func(
                 }
         }'
         );
-        print_r( \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($extKey) );
     },
     $_EXTKEY
 );
