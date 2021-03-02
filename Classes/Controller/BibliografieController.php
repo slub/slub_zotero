@@ -219,7 +219,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
             $data = array_merge($data, $dataNext);
         }
 
-        if ( $this->settings['debug'] == true ) \TYPO3\CMS\Core\Utility\DebugUtility::debug( $collections, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        if ( $this->settings['debug'] == true ) \TYPO3\CMS\Core\Utility\DebugUtility::debug( $data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         return $data;
     }
 
@@ -240,19 +240,26 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         {
             if ( empty( $value['data'][$parentField] ) ) 
             {
-                if ( isset( $data[ $value['key'] ] ) ) 
-                {
-                    $tData[ $value['key'] ] = array_merge($data[ $value['key'] ], $value);
-                } else {
+                // root item
+                if ( !isset( $tData[ $value['key'] ] ) ) {
                     $tData[ $value['key'] ] = $value;
-                }
-
-                if ( $this->settings['zotero']['titleLink'] == true ) {
-                    $this->linkTitleInBibItems( $tData[ $value['key'] ] );
+                    if ( $this->settings['zotero']['titleLink'] == true ) {
+                        $this->linkTitleInBibItems( $tData[ $value['key'] ] );
+                    }
                 }
             } else {
-                // child found
-                $tData[ $value['data'][$parentField] ]['children'][ $value['key'] ] = $value;
+                // child item
+                if ( isset( $tData[ $value['data'][$parentField] ] ) ) {
+                    $tData[ $value['data'][$parentField] ]['children'][ $value['key'] ] = $value;
+                } else {
+                    if ( isset( $data[ $value['data'][$parentField] ] ) ) {
+                        $tData[ $value['data'][$parentField] ] = $data[ $value['data'][$parentField] ];
+                        if ( $this->settings['zotero']['titleLink'] == true ) {
+                            $this->linkTitleInBibItems( $tData[ $value['data'][$parentField] ] );
+                        }
+                        $tData[ $value['data'][$parentField] ]['children'][ $value['key'] ] = $value;
+                    }
+                }
             }
         }
         $data = $tData;
@@ -263,7 +270,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         if ( !empty($item['data']['url']) && !empty($item['data']['title']) ) 
         {
             $link = '<a href="' . $item['data']['url'] . '" target="_blank" class="bib-title-link">' . $item['data']['title'] . '</a>';
-            $item['bib'] = str_replace( $item['data']['title'], $link, $item['bib']);
+            $item['bib'] = str_replace( $item['data']['title'], $link, $item['bib'] );
         }
     }
 
