@@ -16,7 +16,11 @@
       <f:if condition="{item.children}">
         <div class="blink">
           <f:for each="{item.children}" as="childItem">
-            <f:link.external uri="{childItem.data.url}" class="extern" target="_blank">{childItem.data.title}</f:link.external>
+            <f:if condition="{childItem.data.title}">
+              <f:if condition="{childItem.data.url}">
+                <f:link.external uri="{childItem.data.url}" class="extern" target="_blank">{childItem.data.title}</f:link.external>
+              </f:if>
+            </f:if>
           </f:for>
         </div>
       </f:if>
