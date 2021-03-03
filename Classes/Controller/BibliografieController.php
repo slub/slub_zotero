@@ -17,8 +17,6 @@ namespace Slub\SlubZotero\Controller;
  */
 class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-
-
     private $zotero = [];
 
     /**
@@ -26,7 +24,8 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      *
      * @return void
      */
-    public function initializeAction() {
+    public function initializeAction()
+    {
         $this->settings['debug'] = empty($this->settings['debug']) ? false : true;
         $this->settings['zotero']['format'] = empty($this->settings['zotero']['format']) ? 'json' : $this->settings['zotero']['format'];
         $this->settings['zotero']['locale'] = empty($GLOBALS['TSFE']->config['config']['htmlTag_langKey']) ? 'de-DE' : $GLOBALS['TSFE']->config['config']['htmlTag_langKey'];
@@ -36,8 +35,9 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $this->settings['zotero']['titleLink'] = empty($this->settings['zotero']['titleLink']) ? false : true;
         $this->settings['zotero']['ajaxMode'] = empty($this->settings['zotero']['ajaxMode']) ? false : true;
 
-        if ( $this->request->hasArgument('collection') ) $this->zotero['request']['collection'] =  $this->request->getArgument('collection');
-
+        if ($this->request->hasArgument('collection')) {
+            $this->zotero['request']['collection'] =  $this->request->getArgument('collection');
+        }
     }
 
     /**
@@ -47,7 +47,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      */
     public function listAction()
     {
-        if ( in_array($this->settings['zotero']['action'], ['items','items/top']) ) {
+        if (in_array($this->settings['zotero']['action'], ['items','items/top'])) {
             // its a item query
             $collections = $this->getItemsAsCollection();
         } else {
@@ -75,7 +75,9 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $url .= $this->settings['zotero']['type'] . '/';
         $url .= $this->settings['zotero']['id'].'/';
 
-        if ( $this->settings['zotero']['subCollectionId'] ) $url .=  'collections/'.$this->settings['zotero']['subCollectionId'].'/';
+        if ($this->settings['zotero']['subCollectionId']) {
+            $url .=  'collections/'.$this->settings['zotero']['subCollectionId'].'/';
+        }
 
         $url .= $action . '?';
         $url .= 'format=' . $this->settings['zotero']['format'];
@@ -84,41 +86,47 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $url .= '&locale=' . $this->settings['zotero']['locale'];
 
         // additional params
-        if ( $this->settings['zotero']['limit'] )$url .= '&limit=' . $this->settings['zotero']['limit'];
-        if ( $this->settings['zotero']['style'] ) $url .= '&style=' . $this->settings['zotero']['style'];
-        if ( $this->settings['zotero']['include'] ) $url .= '&include=' . $this->settings['zotero']['include'];
+        if ($this->settings['zotero']['limit']) {
+            $url .= '&limit=' . $this->settings['zotero']['limit'];
+        }
+        if ($this->settings['zotero']['style']) {
+            $url .= '&style=' . $this->settings['zotero']['style'];
+        }
+        if ($this->settings['zotero']['include']) {
+            $url .= '&include=' . $this->settings['zotero']['include'];
+        }
         $url .= '&key=' . $this->settings['zotero']['key'];
 
-        if ( $this->settings['debug'] == true ) \TYPO3\CMS\Core\Utility\DebugUtility::debug( $url, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__ );
+        if ($this->settings['debug'] == true) {
+            \TYPO3\CMS\Core\Utility\DebugUtility::debug($url, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        }
         return $url;
     }
 
 
 
-    function filterCollections(&$collection)
+    public function filterCollections(&$collection)
     {
         $cleanCollection = [];
-        foreach($collection as $collectionKey => $collectionValue)
-        {
+        foreach ($collection as $collectionKey => $collectionValue) {
             // collection have items
-            if( $collectionValue['meta']['numItems'] != 0 )
-            {
+            if ($collectionValue['meta']['numItems'] != 0) {
                 $cleanCollection[$collectionKey] = $collectionValue;
                 $cleanCollection[$collectionKey]['data']['title'] = $collectionValue['data']['name'];
             }
         }
         $collection = $cleanCollection;
-        if ( $this->settings['debug'] == true )  \TYPO3\CMS\Core\Utility\DebugUtility::debug( $cleanCollection, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        if ($this->settings['debug'] == true) {
+            \TYPO3\CMS\Core\Utility\DebugUtility::debug($cleanCollection, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        }
     }
 
     // sort the array by any data field
-    function sortDataByDataField(&$data, $dataField='title')
+    public function sortDataByDataField(&$data, $dataField='title')
     {
-
         $sortedData = [];
 
-        foreach($data as $dataKey => $dataValue)
-        {
+        foreach ($data as $dataKey => $dataValue) {
             $sortField = $dataValue['data'][ $dataField ] .'_'. $dataKey;
             $sortedData[ $sortField ] = $dataValue;
         }
@@ -127,158 +135,167 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $data = $sortedData;
     }
 
-    function sortData( &$data ) 
+    public function sortData(&$data)
     {
-        if($this->settings['zotero']['sorting'] == 'desc')
-        {
+        if ($this->settings['zotero']['sorting'] == 'desc') {
             krsort($data);
         } else {
             ksort($data);
         }
-        if ( $this->settings['debug'] == true )  \TYPO3\CMS\Core\Utility\DebugUtility::debug( $data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        if ($this->settings['debug'] == true) {
+            \TYPO3\CMS\Core\Utility\DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        }
     }
 
     // set results from api call to items request
-    function getItemsAsCollection()
+    public function getItemsAsCollection()
     {
-        if ( $this->zotero['request']['collection'] ) $this->settings['zotero']['subCollectionId'] = $this->zotero['request']['collection'];
+        if ($this->zotero['request']['collection']) {
+            $this->settings['zotero']['subCollectionId'] = $this->zotero['request']['collection'];
+        }
 
         $this->settings['zotero']['include'] = 'bib,data,citation';
-        $items = $this->getApiResults( $this->settings['zotero']['action'] );
+        $items = $this->getApiResults($this->settings['zotero']['action']);
         $this->transformItemsToCollection($items);
 
-        if ( $this->settings['debug'] == true ) \TYPO3\CMS\Core\Utility\DebugUtility::debug( $items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        if ($this->settings['debug'] == true) {
+            \TYPO3\CMS\Core\Utility\DebugUtility::debug($items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        }
         return $items;
     }
 
     // set results from api call to items request
-    function getItems()
+    public function getItems()
     {
-        if ( $this->zotero['request']['collection'] ) $this->settings['zotero']['subCollectionId'] = $this->zotero['request']['collection'];
+        if ($this->zotero['request']['collection']) {
+            $this->settings['zotero']['subCollectionId'] = $this->zotero['request']['collection'];
+        }
 
         $this->settings['zotero']['include'] = 'bib,data,citation';
         $items = $this->getApiResults('items');
         $this->createDataTree($items);
 
-        if ( $this->settings['debug'] == true )  \TYPO3\CMS\Core\Utility\DebugUtility::debug( $items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        if ($this->settings['debug'] == true) {
+            \TYPO3\CMS\Core\Utility\DebugUtility::debug($items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        }
         return $items;
     }
 
     // set results from api call to collections request
-    function getCollections() : array
+    public function getCollections() : array
     {
         $collections = $this->getApiResults('collections');
         $this->filterCollections($collections);
         $this->sortDataByDataField($collections, 'title');
 
-        if ( $this->settings['zotero']['ajaxMode'] == false )
-        {
+        if ($this->settings['zotero']['ajaxMode'] == false) {
             $items = [];
-            foreach ( $collections as &$collection ) 
-            {
+            foreach ($collections as &$collection) {
                 $this->zotero['request']['collection'] = $collection['key'];
 
-                if ( $this->settings['zotero']['virtualCollection'] == true )
-                {
-                    $items = array_merge( $items, $this->getItems() );
+                if ($this->settings['zotero']['virtualCollection'] == true) {
+                    $items = array_merge($items, $this->getItems());
                 } else {
                     $collection['items'] = $this->getItems();
                 }
             }
 
-            if ( $this->settings['zotero']['virtualCollection'] == true )
-            {
+            if ($this->settings['zotero']['virtualCollection'] == true) {
                 $this->transformItemsToCollection($items);
                 $collections = $items;
             }
-
         }
 
-        if ( $this->settings['debug'] == true ) \TYPO3\CMS\Core\Utility\DebugUtility::debug( $collections, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        if ($this->settings['debug'] == true) {
+            \TYPO3\CMS\Core\Utility\DebugUtility::debug($collections, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        }
         return $collections;
     }
 
-    function getApiResults($action='items') : array 
+    public function getApiResults($action='items') : array
     {
         $url = $this->buildUrl($action);
         $data = $this->request($url);
         return $data;
     }
 
-    function request($url, $requestCount=0) 
+    public function request($url, $requestCount=0)
     {
-        $json = file_get_contents( $url );
-        $data = json_decode ($json, true);
+        $json = file_get_contents($url);
+        $data = json_decode($json, true);
         $this->reIndexArray($data);
 
-        if ( $requestCount==0 && count($data)==$this->settings['zotero']['limit'] ) 
-        {
+        if ($requestCount==0 && count($data)==$this->settings['zotero']['limit']) {
             // load only one page more
             $url .= '&start='.$this->settings['zotero']['limit'];
             $dataNext = $this->request($url, 1);
             $data = array_merge($data, $dataNext);
         }
 
-        if ( $this->settings['debug'] == true ) \TYPO3\CMS\Core\Utility\DebugUtility::debug( $collections, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        if ($this->settings['debug'] == true) {
+            \TYPO3\CMS\Core\Utility\DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        }
         return $data;
     }
 
-    function reIndexArray(&$data) 
+    public function reIndexArray(&$data)
     {
         $tData = [];
-        foreach ($data as $value) 
-        {
+        foreach ($data as $value) {
             $tData[ $value['key'] ] = $value;
         }
         $data = $tData;
     }
 
-    function createDataTree(&$data, $parentField='parentItem') 
+    public function createDataTree(&$data, $parentField='parentItem')
     {
         $tData = [];
-        foreach ($data as $value) 
-        {
-            if ( empty( $value['data'][$parentField] ) ) 
-            {
-                if ( isset( $data[ $value['key'] ] ) ) 
-                {
-                    $tData[ $value['key'] ] = array_merge($data[ $value['key'] ], $value);
-                } else {
+        foreach ($data as $value) {
+            if (empty($value['data'][$parentField])) {
+                // root item
+                if (!isset($tData[ $value['key'] ])) {
                     $tData[ $value['key'] ] = $value;
-                }
-
-                if ( $this->settings['zotero']['titleLink'] == true ) {
-                    $this->linkTitleInBibItems( $tData[ $value['key'] ] );
+                    if ($this->settings['zotero']['titleLink'] == true) {
+                        $this->linkTitleInBibItems($tData[ $value['key'] ]);
+                    }
                 }
             } else {
-                // child found
-                $tData[ $value['data'][$parentField] ]['children'][ $value['key'] ] = $value;
+                // child item
+                if (isset($tData[ $value['data'][$parentField] ])) {
+                    $tData[ $value['data'][$parentField] ]['children'][ $value['key'] ] = $value;
+                } else {
+                    if (isset($data[ $value['data'][$parentField] ])) {
+                        $tData[ $value['data'][$parentField] ] = $data[ $value['data'][$parentField] ];
+                        if ($this->settings['zotero']['titleLink'] == true) {
+                            $this->linkTitleInBibItems($tData[ $value['data'][$parentField] ]);
+                        }
+                        $tData[ $value['data'][$parentField] ]['children'][ $value['key'] ] = $value;
+                    }
+                }
             }
         }
         $data = $tData;
     }
 
-    function linkTitleInBibItems(&$item)
+    public function linkTitleInBibItems(&$item)
     {
-        if ( !empty($item['data']['url']) && !empty($item['data']['title']) ) 
-        {
+        if (!empty($item['data']['url']) && !empty($item['data']['title'])) {
             $link = '<a href="' . $item['data']['url'] . '" target="_blank" class="bib-title-link">' . $item['data']['title'] . '</a>';
-            $item['bib'] = str_replace( $item['data']['title'], $link, $item['bib']);
+            $item['bib'] = str_replace($item['data']['title'], $link, $item['bib']);
         }
     }
 
-    function transformItemsToCollection(&$items) {
-
+    public function transformItemsToCollection(&$items)
+    {
         $this->createDataTree($items);
         $this->sortDataByDataField($items, 'dateAdded');
         $this->buildCollection($items);
-
     }
 
-    function buildCollection( &$items ) {
-
+    public function buildCollection(&$items)
+    {
         $collection = [];
-        foreach ( $items as $item ) {
+        foreach ($items as $item) {
             $collectionTitle = substr($item['meta']['parsedDate'], 0, 4);
             $collection[ $collectionTitle ]['data']['title'] = $collectionTitle;
             $collection[ $collectionTitle ]['items'][ $item['key'] ] = $item;
@@ -287,5 +304,4 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $this->sortData($collection);
         $items = $collection;
     }
-
 }
