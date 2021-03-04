@@ -15,6 +15,11 @@
       "role": "Developer"
     },
     {
+      "name": "Norman Steger",
+      "email": "norman.steger@slub-dresden.de",
+      "role": "Developer"
+    },
+    {
       "name": "Alexander Bigga",
       "email": "alexander.bigga@slub-dresden.de",
       "role": "Developer"
@@ -28,5 +33,10 @@
     "psr-4": {
       "Slub\\SlubZotero\\": "Classes/"
     }
-  }
+  },
+  "extra": {
+    "typo3/cms": {
+       "extension-key": "slub_zotero"
+    }
+ }
 }
