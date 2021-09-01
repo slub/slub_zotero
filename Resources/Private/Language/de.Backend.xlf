@@ -57,6 +57,9 @@
             <trans-unit id="flexform.action.items.top">
                 <target>Top Titel (items/top)</target>
             </trans-unit>
+            <trans-unit id="flexform.tableOfContents">
+                <target>Inhaltsverzeichnis Modus</target>    
+            </trans-unit>
             <trans-unit id="flexform.limit">
                 <target>Limit der Abfrage</target>
             </trans-unit>
