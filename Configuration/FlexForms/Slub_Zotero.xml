@@ -234,6 +234,14 @@
               </config>
             </TCEforms>
           </settings.zotero.ajaxMode>
+          <settings.zotero.tableOfContents>
+          <TCEforms>
+              <label>LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:flexform.tableOfContents</label>
+              <config>
+                <type>check</type>
+              </config>
+            </TCEforms>
+          </settings.zotero.tableOfContents>
         </el>
       </ROOT>
     </sDEF>
