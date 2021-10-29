@@ -16,22 +16,21 @@ Otherwise your changes will be overwritten the next time you save the extension 
   <f:flashMessages />
   <div class="tx-slub-zotero-collections">
     <f:if condition="{settings.zotero.tableOfContents} == 1">
-      <f:debug>{_all}</f:debug>
       <f:then>
         <ul>
           <f:for each="{collections}" as="collection" iteration="collectionIterator">
             <f:if condition="{collection.data.title}">
-            <li><f:link.page section="{collection.data.title}{collectionIterator.cycle}">{collection.data.title}</f:link.page></li>
+            <li><f:link.page section="{collectionIterator.cycle}">{collection.data.title}</f:link.page></li>
             </f:if>
           </f:for>
         </ul>
         </f:then>
     </f:if>
+    
     <f:else>
-    <f:debug>{settings}</f:debug>
     <f:for each="{collections}" as="collection" iteration="collectionIterator">
         <f:if condition="{collection.data.title}">
-          <h3 class="tx-slub-zotero-collection-title" id="c{collection.data.title}{collectionIterator.cycle}">{collection.data.title}</h3>
+          <h3 class="tx-slub-zotero-collection-title" id="c{collectionIterator.cycle}">{collection.data.title}</h3>
         </f:if>
         <f:if condition="{collection.items}">
           <f:then>
