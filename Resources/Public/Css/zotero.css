@@ -1,6 +1,7 @@
 div.tx-slub-zotero div.bib-item {
     font-family: VistaSlabReg,Arial,Helvetica,Sans-Serif;
     margin-bottom: 20px;
+    max-width: 100%;
 }
 
 div.tx-slub-zotero div.bib-item div.abstract {
@@ -12,6 +13,7 @@ div.tx-slub-zotero div.bib-item div.abstract {
     border-image: initial;
     border-radius: 5px;
     padding: 10px;
+    max-width: 100%;
 }
 
 div.tx-slub-zotero div.bib-item div.blink a {
@@ -21,4 +23,5 @@ div.tx-slub-zotero div.bib-item div.blink a {
     border-radius: 3px;
     position: relative;
     top: 3px;
+    max-width: 100%;
 }
