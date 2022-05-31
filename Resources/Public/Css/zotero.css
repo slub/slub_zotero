@@ -22,3 +22,17 @@ div.tx-slub-zotero div.bib-item div.blink a {
     position: relative;
     top: 3px;
 }
+
+div.tx-slub-zotero ul.toc li {
+    display: inline-block;
+    background: #d5ebef;
+    color: #167;
+    margin: 2px;
+    padding: 8px 18px 5px 17px;
+    border: 1px solid #acc;
+    border-bottom-width: 2px;
+}
+
+div.tx-slub-zotero ul.toc li a {
+    text-decoration: none;
+}
