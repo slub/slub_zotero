@@ -36,3 +36,7 @@ div.tx-slub-zotero ul.toc li {
 div.tx-slub-zotero ul.toc li a {
     text-decoration: none;
 }
+
+a {
+    word-break: break-word;
+}
