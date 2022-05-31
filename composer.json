@@ -11,7 +11,7 @@
   "authors": [
     {
       "name": "Sebastian Semsker",
-      "email": "sebastian.semsker@slub-dresden.de",
+      "email": "typo3@slub-dresden.de",
       "role": "Developer"
     },
     {
@@ -21,13 +21,13 @@
     },
     {
       "name": "Alexander Bigga",
-      "email": "alexander.bigga@slub-dresden.de",
+      "email": "typo3@slub-dresden.de",
       "role": "Developer"
     }
   ],
   "license": "GPL-3.0-or-later",
   "require": {
-    "typo3/cms-core": "~7.6.31|~8.7.31|~9.5.17"
+    "typo3/cms-core": "^9.5|^10.4"
   },
   "autoload": {
     "psr-4": {
