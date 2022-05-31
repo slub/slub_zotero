@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-03-18T13:28:49Z" product-name="slub_zotero">
-        <header/>
-        <body>
-            <trans-unit id="show.creations">
-                <target>zeige Werke</target>
-            </trans-unit>
-            <trans-unit id="show.abstract">
-                <target>zeige Zusammenfassung</target>
-            </trans-unit>
-        </body>
-    </file>
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2022-05-31T11:37:59Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+			<trans-unit id="show.abstract" approved="yes">
+				<source><![CDATA[show abstract]]></source>
+				<target><![CDATA[zeige Zusammenfassung]]></target>
+			</trans-unit>
+			<trans-unit id="show.creations" approved="yes">
+				<source><![CDATA[show creations]]></source>
+				<target><![CDATA[zeige Werke]]></target>
+			</trans-unit>
+			<trans-unit id="tableOfContents" approved="yes">
+				<source><![CDATA[Table of Contents]]></source>
+				<target><![CDATA[Inhaltsverzeichnis]]></target>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>
