@@ -2,7 +2,7 @@
 defined('TYPO3_MODE') || die('Access denied.');
 
 call_user_func(
-    function($extKey)
+    static function()
     {
 
       \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
@@ -18,6 +18,5 @@ call_user_func(
         'FILE:EXT:slub_zotero/Configuration/FlexForms/Slub_Zotero.xml'
       );
 
-    },
-    'slub_zotero'
+    }
 );
