@@ -2,14 +2,14 @@
 defined('TYPO3_MODE') || die('Access denied.');
 
 call_user_func(
-    function($extKey)
+    static function()
     {
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Slub.SlubZotero',
             'Zoterobib',
             [
-                'Bibliografie' => 'list, show'
+                \Slub\SlubZotero\Controller\BibliografieController::class => 'list, show'
             ],
             // non-cacheable actions
             [
@@ -23,7 +23,7 @@ call_user_func(
                 wizards.newContentElement.wizardItems.plugins {
                     elements {
                         zoterobib {
-                            icon = EXT:slub_zotero/Resources/Public/Icons/user_plugin_zoterobib.svg
+                            iconIdentifier = user_plugin_zoterobib
                             title = LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:wizard.title
                             description = LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:wizard.description
                             tt_content_defValues {
@@ -36,6 +36,13 @@ call_user_func(
                 }
         }'
         );
-    },
-    $_EXTKEY
+
+        $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+
+        $iconRegistry->registerIcon(
+            'user_plugin_zoterobib',
+            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+            ['source' => 'EXT:slub_zotero/Resources/Public/Icons/user_plugin_zoterobib.svg']
+        );
+    }
 );
