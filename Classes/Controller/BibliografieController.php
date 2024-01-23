@@ -1,6 +1,9 @@
 <?php
 namespace Slub\SlubZotero\Controller;
 
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Utility\DebugUtility;
 /***
  *
  * This file is part of the "SLUB: Zotero Bibliografie" Extension for TYPO3 CMS.
@@ -11,11 +14,10 @@ namespace Slub\SlubZotero\Controller;
  *  (c) 2019
  *
  ***/
-
 /**
  * BibliografieController
  */
-class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class BibliografieController extends ActionController
 {
     private $zotero = [];
 
@@ -45,7 +47,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      *
      * @return void
      */
-    public function listAction(): void
+    public function listAction(): ResponseInterface
     {
         if (in_array($this->settings['zotero']['action'], ['items','items/top'])) {
             // its a item query
@@ -54,6 +56,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
             $collections = $this->getCollections();
         }
         $this->view->assign('collections', $collections);
+        return $this->htmlResponse();
     }
 
     /**
@@ -62,10 +65,11 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      *
      * @return void
      */
-    public function showAction(): void
+    public function showAction(): ResponseInterface
     {
         $items = $this->getItems();
         $this->view->assign('items', $items);
+        return $this->htmlResponse();
     }
 
     //url is build with user selected/provided information
@@ -98,7 +102,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $url .= '&key=' . $this->settings['zotero']['key'];
 
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($url, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($url, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
         return $url;
     }
@@ -117,7 +121,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         }
         $collection = $cleanCollection;
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($cleanCollection, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($cleanCollection, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
     }
 
@@ -143,7 +147,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
             ksort($data);
         }
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
     }
 
@@ -159,7 +163,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $this->transformItemsToCollection($items);
 
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
         return $items;
     }
@@ -176,7 +180,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $this->createDataTree($items);
 
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
         return $items;
     }
@@ -207,7 +211,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         }
 
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($collections, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($collections, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
         return $collections;
     }
@@ -233,7 +237,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         }
 
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
         return $data;
     }
