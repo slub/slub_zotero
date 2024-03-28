@@ -1,6 +1,9 @@
 <?php
 namespace Slub\SlubZotero\Controller;
 
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Utility\DebugUtility;
 /***
  *
  * This file is part of the "SLUB: Zotero Bibliografie" Extension for TYPO3 CMS.
@@ -11,11 +14,10 @@ namespace Slub\SlubZotero\Controller;
  *  (c) 2019
  *
  ***/
-
 /**
  * BibliografieController
  */
-class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class BibliografieController extends ActionController
 {
     private $zotero = [];
 
@@ -24,7 +26,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      *
      * @return void
      */
-    public function initializeAction()
+    public function initializeAction(): void
     {
         $this->settings['debug'] = empty($this->settings['debug']) ? false : true;
         $this->settings['zotero']['format'] = empty($this->settings['zotero']['format']) ? 'json' : $this->settings['zotero']['format'];
@@ -45,7 +47,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      *
      * @return void
      */
-    public function listAction()
+    public function listAction(): ResponseInterface
     {
         if (in_array($this->settings['zotero']['action'], ['items','items/top'])) {
             // its a item query
@@ -54,6 +56,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
             $collections = $this->getCollections();
         }
         $this->view->assign('collections', $collections);
+        return $this->htmlResponse();
     }
 
     /**
@@ -62,13 +65,14 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      *
      * @return void
      */
-    public function showAction()
+    public function showAction(): ResponseInterface
     {
         $items = $this->getItems();
         $this->view->assign('items', $items);
+        return $this->htmlResponse();
     }
 
-    //url is build with user selected/provided informations
+    //url is build with user selected/provided information
     private function buildUrl($action='items') : string
     {
         $url = 'https://api.zotero.org/';
@@ -98,14 +102,14 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $url .= '&key=' . $this->settings['zotero']['key'];
 
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($url, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($url, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
         return $url;
     }
 
 
 
-    public function filterCollections(&$collection)
+    public function filterCollections(&$collection): void
     {
         $cleanCollection = [];
         foreach ($collection as $collectionKey => $collectionValue) {
@@ -117,12 +121,12 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         }
         $collection = $cleanCollection;
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($cleanCollection, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($cleanCollection, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
     }
 
     // sort the array by any data field
-    public function sortDataByDataField(&$data, $dataField='title')
+    public function sortDataByDataField(&$data, $dataField='title'): void
     {
         $sortedData = [];
 
@@ -135,7 +139,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $data = $sortedData;
     }
 
-    public function sortData(&$data)
+    public function sortData(&$data): void
     {
         if ($this->settings['zotero']['sorting'] == 'desc') {
             krsort($data);
@@ -143,12 +147,12 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
             ksort($data);
         }
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
     }
 
     // set results from api call to items request
-    public function getItemsAsCollection()
+    public function getItemsAsCollection(): array
     {
         if ($this->zotero['request']['collection']) {
             $this->settings['zotero']['subCollectionId'] = $this->zotero['request']['collection'];
@@ -159,13 +163,13 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $this->transformItemsToCollection($items);
 
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
         return $items;
     }
 
     // set results from api call to items request
-    public function getItems()
+    public function getItems(): array
     {
         if ($this->zotero['request']['collection']) {
             $this->settings['zotero']['subCollectionId'] = $this->zotero['request']['collection'];
@@ -176,7 +180,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $this->createDataTree($items);
 
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($items, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
         return $items;
     }
@@ -207,7 +211,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         }
 
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($collections, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($collections, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
         return $collections;
     }
@@ -233,7 +237,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         }
 
         if ($this->settings['debug'] == true) {
-            \TYPO3\CMS\Core\Utility\DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+            DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
         return $data;
     }
@@ -247,7 +251,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $data = $tData;
     }
 
-    public function createDataTree(&$data, $parentField='parentItem')
+    public function createDataTree(&$data, $parentField='parentItem'): void
     {
         $tData = [];
         foreach ($data as $value) {
@@ -277,7 +281,7 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $data = $tData;
     }
 
-    public function linkTitleInBibItems(&$item)
+    public function linkTitleInBibItems(&$item): void
     {
         if (!empty($item['data']['url']) && !empty($item['data']['title'])) {
             $link = '<a href="' . $item['data']['url'] . '" target="_blank" class="bib-title-link">' . $item['data']['title'] . '</a>';
@@ -285,14 +289,14 @@ class BibliografieController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         }
     }
 
-    public function transformItemsToCollection(&$items)
+    public function transformItemsToCollection(&$items): void
     {
         $this->createDataTree($items);
         $this->sortDataByDataField($items, 'dateAdded');
         $this->buildCollection($items);
     }
 
-    public function buildCollection(&$items)
+    public function buildCollection(&$items): void
     {
         $collection = [];
         foreach ($items as $item) {

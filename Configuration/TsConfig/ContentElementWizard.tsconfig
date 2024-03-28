@@ -1,0 +1,14 @@
+mod.wizards.newContentElement.wizardItems.plugins {
+    elements {
+        zoterobib {
+            iconIdentifier = user_plugin_zoterobib
+            title = LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:wizard.title
+            description = LLL:EXT:slub_zotero/Resources/Private/Language/Backend.xlf:wizard.description
+            tt_content_defValues {
+                CType = list
+                list_type = slubzotero_zoterobib
+            }
+        }
+    }
+    show = *
+}
