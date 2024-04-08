@@ -17,13 +17,12 @@ page.includeCSS {
 
 # add jquery js
 [{$plugin.tx_slubzotero_zoterobib.config.js.addJquery} == 1]
-  page.includeJSFooterlibs.jquery = //code.jquery.com/jquery.js
-  page.includeJSFooterlibs.jquery {
-    jquery.forceOnTop = 1
-    jquery.external = 1
-  }
+page.includeJSFooterlibs.jquery = //code.jquery.com/jquery.js
+page.includeJSFooterlibs.jquery {
+  jquery.forceOnTop = 1
+  jquery.external = 1
+}
 [global]
-
 # add required js
 page.includeJSFooterlibs {
   jqueryLoadingOverlay = {$plugin.tx_slubzotero_zoterobib.config.js.jqueryLoadingOverlayFile}
@@ -37,7 +36,7 @@ show {
   typeNum = 6452187564
   config {
     disableAllHeaderCode = 1
-    additionalHeaders = Content-type:application/json
+    additionalHeaders.10.header = Content-type:application/json
     admPanel = 0
     debug = 0
   }
@@ -45,7 +44,7 @@ show {
   10 {
     stdWrap.trim = 1
     select {
-        where = list_type = "slubzotero_zoterobib"
+      where = list_type = "slubzotero_zoterobib"
     }
     renderObj < tt_content.list.20.slubzotero_zoterobib
   }
