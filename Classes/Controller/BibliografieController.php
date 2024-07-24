@@ -225,20 +225,30 @@ class BibliografieController extends ActionController
 
     public function request($url, $requestCount=0)
     {
-        $json = file_get_contents($url);
-        $data = json_decode($json, true);
-        $this->reIndexArray($data);
+        $data = '',
 
-        if ($requestCount==0 && count($data)==$this->settings['zotero']['limit']) {
-            // load only one page more
-            $url .= '&start='.$this->settings['zotero']['limit'];
-            $dataNext = $this->request($url, 1);
-            $data = array_merge($data, $dataNext);
+        if ($this->settings['debug'] == true) {
+            DebugUtility::debug($url, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
+        }
+        
+        $json = @file_get_contents($url);
+
+        if($json !== FALSE) {
+            $data = json_decode($json, true);
+            $this->reIndexArray($data);
+    
+            if ($requestCount==0 && count($data)==$this->settings['zotero']['limit']) {
+                // load only one page more
+                $url .= '&start='.$this->settings['zotero']['limit'];
+                $dataNext = $this->request($url, 1);
+                $data = array_merge($data, $dataNext);
+            }
         }
 
         if ($this->settings['debug'] == true) {
             DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
+        
         return $data;
     }
 
