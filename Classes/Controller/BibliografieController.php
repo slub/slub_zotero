@@ -225,7 +225,7 @@ class BibliografieController extends ActionController
 
     public function request($url, $requestCount=0)
     {
-        $data = '',
+        $data = '';
 
         if ($this->settings['debug'] == true) {
             DebugUtility::debug($url, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
