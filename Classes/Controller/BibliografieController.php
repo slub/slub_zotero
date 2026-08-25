@@ -1,9 +1,11 @@
 <?php
+
 namespace Slub\SlubZotero\Controller;
 
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\DebugUtility;
+
 /***
  *
  * This file is part of the "SLUB: Zotero Bibliografie" Extension for TYPO3 CMS.
@@ -32,7 +34,7 @@ class BibliografieController extends ActionController
         $this->settings['zotero']['format'] = empty($this->settings['zotero']['format']) ? 'json' : $this->settings['zotero']['format'];
         $this->settings['zotero']['locale'] = empty($GLOBALS['TSFE']->config['config']['htmlTag_langKey']) ? 'de-DE' : $GLOBALS['TSFE']->config['config']['htmlTag_langKey'];
         $this->settings['zotero']['linkWrap'] = empty($this->settings['zotero']['linkWrap']) ? 0 : 1;
-        $this->settings['zotero']['limit'] = empty($this->settings['zotero']['limit']) ? 100 :  $this->settings['zotero']['limit'];
+        $this->settings['zotero']['limit'] = empty($this->settings['zotero']['limit']) ? 100 : $this->settings['zotero']['limit'];
         $this->settings['zotero']['virtualCollection'] = empty($this->settings['zotero']['virtualCollection']) ? false : true;
         $this->settings['zotero']['titleLink'] = empty($this->settings['zotero']['titleLink']) ? false : true;
         $this->settings['zotero']['ajaxMode'] = empty($this->settings['zotero']['ajaxMode']) ? false : true;
@@ -73,7 +75,7 @@ class BibliografieController extends ActionController
     }
 
     //url is build with user selected/provided information
-    private function buildUrl($action='items') : string
+    private function buildUrl($action = 'items'): string
     {
         $url = 'https://api.zotero.org/';
         $url .= $this->settings['zotero']['type'] . '/';
@@ -126,7 +128,7 @@ class BibliografieController extends ActionController
     }
 
     // sort the array by any data field
-    public function sortDataByDataField(&$data, $dataField='title'): void
+    public function sortDataByDataField(&$data, $dataField = 'title'): void
     {
         $sortedData = [];
 
@@ -186,7 +188,7 @@ class BibliografieController extends ActionController
     }
 
     // set results from api call to collections request
-    public function getCollections() : array
+    public function getCollections(): array
     {
         $collections = $this->getApiResults('collections');
         $this->filterCollections($collections);
@@ -216,28 +218,28 @@ class BibliografieController extends ActionController
         return $collections;
     }
 
-    public function getApiResults($action='items') : array
+    public function getApiResults($action = 'items'): array
     {
         $url = $this->buildUrl($action);
         $data = $this->request($url);
         return $data;
     }
 
-    public function request($url, $requestCount=0)
+    public function request($url, $requestCount = 0)
     {
         $data = '';
 
         if ($this->settings['debug'] == true) {
             DebugUtility::debug($url, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
-        
+
         $json = @file_get_contents($url);
 
-        if($json !== FALSE) {
+        if ($json !== false) {
             $data = json_decode($json, true);
             $this->reIndexArray($data);
-    
-            if ($requestCount==0 && count($data)==$this->settings['zotero']['limit']) {
+
+            if ($requestCount == 0 && count($data) == $this->settings['zotero']['limit']) {
                 // load only one page more
                 $url .= '&start='.$this->settings['zotero']['limit'];
                 $dataNext = $this->request($url, 1);
@@ -248,7 +250,7 @@ class BibliografieController extends ActionController
         if ($this->settings['debug'] == true) {
             DebugUtility::debug($data, 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__ . ' Function: '. __FUNCTION__);
         }
-        
+
         return $data;
     }
 
@@ -261,7 +263,7 @@ class BibliografieController extends ActionController
         $data = $tData;
     }
 
-    public function createDataTree(&$data, $parentField='parentItem'): void
+    public function createDataTree(&$data, $parentField = 'parentItem'): void
     {
         $tData = [];
         foreach ($data as $value) {
